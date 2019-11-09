@@ -17,7 +17,7 @@ public class Maze {
         } catch(IOException e) { }
 
         if(maze == null) {
-            System.out.println("Did not read correct maze.");
+            System.err.println("Did not read correct maze.");
             System.exit(2);
         }
 
@@ -26,6 +26,11 @@ public class Maze {
     }
 
     public Maze(int a, int b) {
+        if(a <= 1 || b <= 1) {
+            System.err.println("Wrong size! Both dimensions should be greater than 1!");
+            System.exit(4);
+        }
+
         height = 2*a + 1;
         width = 2*b + 1;
 
