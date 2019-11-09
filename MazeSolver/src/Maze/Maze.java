@@ -74,7 +74,7 @@ public class Maze {
             holePos = (rand.nextInt((yTo - yFrom) / 2)) * 2 + yFrom;
             drawWall(wallPos, holePos, yFrom, yTo, true);
             // left
-            generate(xFrom, wallPos-1, yFrom, yTo, (xTo-wallPos+1) > (yTo-yFrom));
+            generate(xFrom, wallPos-1, yFrom, yTo, (wallPos-1-xFrom) > (yTo-yFrom));
             // right
             generate(wallPos+1, xTo, yFrom, yTo, (xTo-wallPos-1) > (yTo-yFrom));
         }
@@ -109,6 +109,7 @@ public class Maze {
                 if(i != hole)
                     maze[pos][i] = '1';
         }
+        System.out.println(this);
     }
 
     @Override

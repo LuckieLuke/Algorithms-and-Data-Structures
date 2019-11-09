@@ -10,7 +10,7 @@ public class Main {
     static Maze m;
 
     public static void main(String[] args){
-        Scanner sc = new Scanner(System.in);
+        /*Scanner sc = new Scanner(System.in);
         FileManager fm = new FileManager();
         System.out.println("How to create a maze?");
         System.out.println("1) by size");
@@ -48,8 +48,10 @@ public class Main {
                 System.exit(3);
             }
             System.out.println("Saved!");
-        }
+        }*/
 
+        m = new Maze(5, 5);
+        m.generate(1, m.getWidth()-2, 1, m.getHeight()-2, m.getWidth() > m.getHeight());
         System.out.println("Your maze looks like this:\n" + m);
 
     }
