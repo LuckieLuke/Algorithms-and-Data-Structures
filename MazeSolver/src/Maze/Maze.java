@@ -68,14 +68,18 @@ public class Maze {
             wallPos = (rand.nextInt((xTo - xFrom) / 2)) * 2 + xFrom + 1;
             holePos = (rand.nextInt((yTo - yFrom) / 2)) * 2 + yFrom;
             drawWall(wallPos, holePos, yFrom, yTo, true);
+            // left
             generate(xFrom, wallPos-1, yFrom, yTo, (xTo-wallPos+1) > (yTo-yFrom));
+            // right
             generate(wallPos+1, xTo, yFrom, yTo, (xTo-wallPos-1) > (yTo-yFrom));
         }
         else {
             wallPos = (rand.nextInt((yTo - yFrom) / 2)) * 2 + yFrom + 1;
             holePos = (rand.nextInt((xTo - xFrom) / 2)) * 2 + xFrom;
             drawWall(wallPos, holePos, xFrom, xTo, false);
+            // up
             generate(xFrom, xTo, yFrom, wallPos-1, (xTo-xFrom) > (wallPos-1-yFrom));
+            // down
             generate(xFrom, xTo, wallPos+1, yTo, (xTo-xFrom) > (yTo-wallPos-1));
         }
     }
