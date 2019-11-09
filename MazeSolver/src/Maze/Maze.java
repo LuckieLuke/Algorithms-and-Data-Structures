@@ -62,7 +62,11 @@ public class Maze {
         return maze[i][j];
     }
 
-    public void generate(int xFrom, int xTo, int yFrom, int yTo, boolean isVertical) { // vertical = pionowy
+    public void generate() {
+        generateMaze(1, width-2, 1, height-2, width > height);
+    }
+
+    private void generateMaze(int xFrom, int xTo, int yFrom, int yTo, boolean isVertical) { // vertical = pionowy
         if(((yTo-yFrom) <= 0) || ((xTo-xFrom) <= 0))
             return;
 
@@ -74,18 +78,18 @@ public class Maze {
             holePos = (rand.nextInt((yTo - yFrom) / 2)) * 2 + yFrom;
             drawWall(wallPos, holePos, yFrom, yTo, true);
             // left
-            generate(xFrom, wallPos-1, yFrom, yTo, (wallPos-1-xFrom) > (yTo-yFrom));
+            generateMaze(xFrom, wallPos-1, yFrom, yTo, ((wallPos-1-xFrom) == (yTo-yFrom) ? rand.nextBoolean() : (wallPos-1-xFrom) > (yTo-yFrom)));
             // right
-            generate(wallPos+1, xTo, yFrom, yTo, (xTo-wallPos-1) > (yTo-yFrom));
+            generateMaze(wallPos+1, xTo, yFrom, yTo, ((wallPos-1-xFrom) == (yTo-yFrom) ? rand.nextBoolean() : (wallPos-1-xFrom) > (yTo-yFrom)));
         }
         else {
             wallPos = (rand.nextInt((yTo - yFrom) / 2)) * 2 + yFrom + 1;
             holePos = (rand.nextInt((xTo - xFrom) / 2)) * 2 + xFrom;
             drawWall(wallPos, holePos, xFrom, xTo, false);
             // up
-            generate(xFrom, xTo, yFrom, wallPos-1, (xTo-xFrom) > (wallPos-1-yFrom));
+            generateMaze(xFrom, xTo, yFrom, wallPos-1, ((xTo-xFrom) == (wallPos-1-yFrom) ? rand.nextBoolean() : (xTo-xFrom) > (wallPos-1-yFrom)));
             // down
-            generate(xFrom, xTo, wallPos+1, yTo, (xTo-xFrom) > (yTo-wallPos-1));
+            generateMaze(xFrom, xTo, wallPos+1, yTo, ((xTo-xFrom) == (wallPos-1-yFrom) ? rand.nextBoolean() : (xTo-xFrom) > (wallPos-1-yFrom)));
         }
     }
 
@@ -102,14 +106,13 @@ public class Maze {
         if(isVertical) {
             for(int i = from; i <= to; i++)
                 if(i != hole)
-                    maze[i][pos] = '1';
+                    maze[i][pos] = '+';
         }
         else {
             for(int i = from; i <= to; i++)
                 if(i != hole)
-                    maze[pos][i] = '1';
+                    maze[pos][i] = '+';
         }
-        System.out.println(this);
     }
 
     @Override
@@ -119,14 +122,13 @@ public class Maze {
             for(int j = 0; j < width; j++) {
                 if(maze[i][j] == '0')
                     sb.append("\u001B[32m" + "0" + "\u001B[0m");
-                else if(maze[i][j] == '1')
-                    sb.append("\u001B[31m" + "1" + "\u001B[0m");
+                else if(maze[i][j] == '+')
+                    sb.append("\u001B[31m" + "+" + "\u001B[0m");
                 else if(maze[i][j] == '#' || maze[i][j] == '*')
                     sb.append("\u001B[34m" + maze[i][j] + "\u001B[0m");
 
                 else
                     sb.append(maze[i][j]);
-                //sb.append(maze[i][j]);
             }
             sb.append('\n');
         }

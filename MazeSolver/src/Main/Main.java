@@ -10,11 +10,11 @@ public class Main {
     static Maze m;
 
     public static void main(String[] args){
-        /*Scanner sc = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
         FileManager fm = new FileManager();
         System.out.println("How to create a maze?");
         System.out.println("1) by size");
-        System.out.println("2) by reading from file");
+        System.out.println("2) by reading from file\n" + "\u001B[35m" + "   (please, remember that every line should end with a 'new line' sign)" + "\u001B[0m");
         String answer = sc.next();
 
         if(answer.equals("1")) {
@@ -22,7 +22,7 @@ public class Main {
             int h = sc.nextInt();
             int w = sc.nextInt();
             m = new Maze(h, w);
-            m.generate(1, m.getWidth()-2, 1, m.getHeight()-2, m.getWidth() > m.getHeight());
+            m.generate();
         }
         else if(answer.equals("2")) {
             System.out.println("Path to the file:");
@@ -48,10 +48,10 @@ public class Main {
                 System.exit(3);
             }
             System.out.println("Saved!");
-        }*/
+        }
 
-        m = new Maze(5, 5);
-        m.generate(1, m.getWidth()-2, 1, m.getHeight()-2, m.getWidth() > m.getHeight());
+/*        m = new Maze(5, 5);
+        m.generate();*/
         System.out.println("Your maze looks like this:\n" + m);
 
     }
