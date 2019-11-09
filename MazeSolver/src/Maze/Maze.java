@@ -111,7 +111,16 @@ public class Maze {
         StringBuilder sb = new StringBuilder();
         for(int i = 0; i < height; i++) {
             for(int j = 0; j < width; j++) {
-                sb.append(maze[i][j]);
+                if(maze[i][j] == '0')
+                    sb.append("\u001B[32m" + "0" + "\u001B[0m");
+                else if(maze[i][j] == '1')
+                    sb.append("\u001B[31m" + "1" + "\u001B[0m");
+                else if(maze[i][j] == '#' || maze[i][j] == '*')
+                    sb.append("\u001B[34m" + maze[i][j] + "\u001B[0m");
+
+                else
+                    sb.append(maze[i][j]);
+                //sb.append(maze[i][j]);
             }
             sb.append('\n');
         }

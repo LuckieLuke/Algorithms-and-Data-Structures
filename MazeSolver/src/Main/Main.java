@@ -50,7 +50,7 @@ public class Main {
             System.out.println("Saved!");
         }
 
-        System.out.println(m);
+        System.out.println("Your maze looks like this:\n" + m);
 
     }
 
