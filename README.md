@@ -1,3 +1,3 @@
 # Algorithms-and-Data-Structures
 
-Maze randomizing and solving
+Few mini algorithmic programs
